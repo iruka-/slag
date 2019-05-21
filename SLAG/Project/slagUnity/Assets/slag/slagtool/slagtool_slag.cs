@@ -88,7 +88,8 @@ namespace slagtool
             {
                 case ".JS":
                     {
-                        LoadJSFiles(new Filelist( filename ));
+//                      LoadJSFiles(new Filelist( filename )); rootが設定されない.
+                        LoadJSFiles(new Filelist( "" , filename ));
                     }
                     break;
                 case ".BASE64":
@@ -239,7 +240,8 @@ namespace slagtool
     
             UnityEngine.Debug.Log("Elapsed time :"+(UnityEngine.Time.realtimeSinceStartup - save));
     #else
-            throw new NotImplementedException();
+//          throw new NotImplementedException(); 実行できない.
+            run_script.run(m_exelist[0], m_statebuf);
     #endif
 #endif
         }
