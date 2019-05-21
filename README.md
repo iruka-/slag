@@ -21,7 +21,9 @@ Ubuntu 18.04 LTS
 ## 実行.
 
  $ cd slag/SLAG/Project/slagUnity/Assets/slag
+
  $ make
+
  $ make test
 
 ## ToDo. 【緩募】
