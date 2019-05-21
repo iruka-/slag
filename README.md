@@ -1,6 +1,6 @@
 > [English - Translated by Google](https://translate.googleusercontent.com/translate_c?act=url&depth=1&hl=ja&ie=UTF8&prev=_t&rurl=translate.google.co.jp&sl=ja&sp=nmt1&tl=en&u=https://github.com/iruka-/slag)
 
-[オリジナル版README](https://github.com/iruka-/slag/README-orig.md)
+[オリジナル版README](https://github.com/iruka-/slag/blob/master/README-orig.md)
 
 # slag (Something Like A Gei-es[JS])
 
