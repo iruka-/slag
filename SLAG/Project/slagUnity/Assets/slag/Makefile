@@ -10,15 +10,10 @@ clean:
 	-rm *~
 	-rm Slag.exe
 #
-test:
+test01:
 	./Slag.exe test01.js
 
-dump:
-	./Slag.exe -d
+test:
+	./Slag.exe test.js
 
-load:
-	./Slag.exe -l
-
-dump2:
-	./Slag.exe -t
 #

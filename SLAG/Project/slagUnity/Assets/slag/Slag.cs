@@ -32,3 +32,27 @@ namespace UnityEngine {
 	}
 }
 
+namespace mySpace1 {
+class myTest1
+{
+	int x=10;
+
+	public int getx()
+	{
+		x++;
+		return x;
+	}
+}
+}
+
+
+class myTest100
+{
+	public int x=100;
+
+	public int getx()
+	{
+		x++;
+		return x;
+	}
+}

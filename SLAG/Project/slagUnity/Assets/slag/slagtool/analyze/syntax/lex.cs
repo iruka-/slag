@@ -199,6 +199,7 @@ namespace slagtool
                 for (int i = 1; i < ls.Length; i++)
                 {
                     if (IsNumberElement(ls[i]))
+//                    if (IsHexNumElement(ls[i],i))
                     {
                         s += ls[i];
                     }
@@ -210,6 +211,16 @@ namespace slagtool
                 }
                 if (wdlen == 0) wdlen = ls.Length;
                 number d;
+/***
+                System.Int32 i32;
+				System.Globalization.CultureInfo provider;
+				provider = new System.Globalization.CultureInfo("en-US");
+                if (System.Int32.TryParse(s, System.Globalization.NumberStyles.HexNumber,provider,out i32))
+                {
+					d = i32;
+                    return any_return(v, YDEF.NUM, d, s);
+                }
+ ***/
                 if (number.TryParse(s, out d))
                 {
                     return any_return(v, YDEF.NUM, d, s);
@@ -372,6 +383,14 @@ namespace slagtool
         static bool IsNumberElement(char c)
         {
             return (c >= '0' && c <= '9') || (c == '.');
+        }
+        static bool IsHexNumElement(char c,int pos)
+        {
+            if ((c == 'x') && (pos == 1)) return true;
+            if ((c >= '0' && c <= '9') || (c == '.')) return true;
+            if ((c >= 'a' && c <= 'f')) return true;
+            if ((c >= 'A' && c <= 'F')) return true;
+			return false;
         }
         static bool IsNameElement(char c, bool bNumberInclude = false)
         {
