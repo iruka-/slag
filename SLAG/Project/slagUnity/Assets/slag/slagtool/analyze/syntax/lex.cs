@@ -191,46 +191,26 @@ namespace slagtool
                 return any_return(v,YDEF.EOL);
             }
 
-            //数字
-            if (IsNumberElement(ls[0]))
-            {
+            // 数字 || １６進数.
+            if (ls[0] >= '0' && ls[0] <= '9') {	 //(IsNumberElement(ls[0]))
+				if(ls[1]=='x') {return isaHexNumber(v,ls,out wdlen);}
                 wdlen = 0;
                 string s = "" + ls[0];
-                for (int i = 1; i < ls.Length; i++)
-                {
-                    if (IsNumberElement(ls[i]))
-//                    if (IsHexNumElement(ls[i],i))
-                    {
+                for (int i = 1; i < ls.Length; i++){
+                    if (IsNumberElement(ls[i])){
                         s += ls[i];
-                    }
-                    else
-                    {
+	                }else{
                         wdlen = i;
                         break;
                     }
                 }
                 if (wdlen == 0) wdlen = ls.Length;
                 number d;
-/***
-                System.Int32 i32;
-				System.Globalization.CultureInfo provider;
-				provider = new System.Globalization.CultureInfo("en-US");
-                if (System.Int32.TryParse(s, System.Globalization.NumberStyles.HexNumber,provider,out i32))
-                {
-					d = i32;
+                if (number.TryParse(s, out d)){
                     return any_return(v, YDEF.NUM, d, s);
-                }
- ***/
-                if (number.TryParse(s, out d))
-                {
-                    return any_return(v, YDEF.NUM, d, s);
-                }
-                else if (s==".")
-                {
+                }else if (s==".") {
                     return any_return(v,YDEF.PERIOD,null,".");
-                }
-                else 
-                {
+                }else{
                     return err_return(v,s);
                 }
             }
@@ -310,6 +290,36 @@ namespace slagtool
             return any_return(v,YDEF.OTR,null,""+ls[0]);
         }
 
+		// 16進数専用処理. ls[0]='0' ls[1]='x'
+        static YVALUE isaHexNumber(YVALUE v,string ls,out int wdlen)
+		{
+            	wdlen = 0;
+                string s = "0x"; //決め打ち.
+                for (int i = 2; i < ls.Length; i++){
+                    if (IsHexNumberElement(ls[i])){
+                        s += ls[i];
+	                }else{
+                        wdlen = i;
+                        break;
+                    }
+                }
+                if (wdlen == 0) wdlen = ls.Length;
+
+                number d;
+                System.Int32 i32;
+				System.Globalization.CultureInfo provider;
+				provider = new System.Globalization.CultureInfo("en-US");
+
+				string h = s.Substring(2);
+                if (System.Int32.TryParse(h, System.Globalization.NumberStyles.HexNumber,provider,out i32))
+                {
+					d = i32;
+                    return any_return(v, YDEF.NUM, d, s);
+                }else{
+                    return err_return(v,s);
+                }
+		}
+
         // -- util for this clas --
         static YVALUE err_return(YVALUE v, string s)
         {
@@ -384,10 +394,9 @@ namespace slagtool
         {
             return (c >= '0' && c <= '9') || (c == '.');
         }
-        static bool IsHexNumElement(char c,int pos)
+        static bool IsHexNumberElement(char c)
         {
-            if ((c == 'x') && (pos == 1)) return true;
-            if ((c >= '0' && c <= '9') || (c == '.')) return true;
+            if ((c >= '0' && c <= '9')) return true;
             if ((c >= 'a' && c <= 'f')) return true;
             if ((c >= 'A' && c <= 'F')) return true;
 			return false;

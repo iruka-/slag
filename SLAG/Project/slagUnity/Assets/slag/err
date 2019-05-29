@@ -1,3 +1,0 @@
-slagtool/analyze/syntax/lex.cs(218,34): error CS1501: No overload for method `TryParse' takes `3' arguments
-/usr/lib/mono/4.5/mscorlib.dll (Location of the symbol related to previous error)
-make: *** [all] Error 1

@@ -14,7 +14,8 @@ function main()
 	PrintLn(1+2+3.14);
 	Console.Write("Usage:\n Slag.exe script.js\t:");
 	PrintLn(a+2);
-	PrintLn(256 | 1);
+	PrintLn(0x10000);
+//	PrintLn(256 | 1);
 }
 
 function main2()
