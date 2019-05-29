@@ -13,11 +13,11 @@ namespace slagtool
     public class lexPrimitive
     {
         //計算記号  2文字を先に。
-        public static string[] operators_all       = {"++","--","==","!=","<=",">=","+=","-=","*=","/=","%=","&&","||","=","+","-","*","/","%",">","<","!",",",".",":","?"}; //未サポート含む
+        public static string[] operators_all       = {"++","--","==","!=","<=",">=","+=","-=","*=","/=","%=","&&","||","=","+","-","*","/","&","|","^","%",">","<","!",",",".",":","?"}; //未サポート含む
         public static string[] operators_prefix    = {"++","--","+","-","!","~" };
         public static string[] operators_postfix   = {"++","--"};
         public static string[] operators_ternay    = {"?",":"};
-        public static string[] operators_binary    = {"==","!=","<=",">=","+=","-=","*=","/=","%=","&&","||","=","+","-","*","/","%",">","<",",","." };
+        public static string[] operators_binary    = {"==","!=","<=",">=","+=","-=","*=","/=","%=","&&","||","=","+","-","*","/","%",">","<",",","."};
 
         string m_src;
         string[] m_lines;
@@ -261,7 +261,7 @@ namespace slagtool
             }
             
             //計算記号  2文字を先に。 "="は除外
-            string[] ops = lexPrimitive.operators_all;//{"++","--","==","!=","<=",">=","+=","-=","*=","/=","%=","&&","||","=","+","-","*","/","%",">","<","!",",","."}; //未サポート含む
+            string[] ops = lexPrimitive.operators_all;//{"++","--","==","!=","<=",">=","+=","-=","*=","/=","%=","&&","||","=","+","-","*","/","&","|","^","%",">","<","!",",","."}; //未サポート含む
             foreach(var op in ops)
             {
                 if (op.Length==2 && ls.Length>=2)
@@ -308,8 +308,7 @@ namespace slagtool
                 System.Int32 i32;
                 if (System.Int32.TryParse(s.Substring(2), System.Globalization.NumberStyles.HexNumber,null,out i32))
                 {
-	                number d = i32;
-                    return any_return(v, YDEF.NUM, d, s);
+                    return any_return(v, YDEF.NUM, i32, s);
                 }else{
                     return err_return(v,s);
                 }
@@ -330,8 +329,8 @@ namespace slagtool
             v.o = v.s;
             int type = YDEF.UNKNOWN;
 
-            string[] op3  = {"*","/","%" };
-            string[] op4  = {"+","-" };
+            string[] op3  = {"*","/","%","&","^" };
+            string[] op4  = {"+","-","|" };
             string[] op6  = {"<","<=",">",">="};
             string[] op7  = {"==","!="};
             string[] op11 = {"||"};

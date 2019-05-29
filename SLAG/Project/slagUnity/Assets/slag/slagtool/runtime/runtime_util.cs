@@ -196,6 +196,9 @@ namespace slagtool.runtime
                     case "-":   
                     case "*":   
                     case "/":   
+                    case "&":   
+                    case "|":   
+                    case "^":   
                     case "%":   return _calc_numeric(a,b,op);
                 }
 
@@ -295,7 +298,7 @@ namespace slagtool.runtime
                 case "/": return a / b;
                 case "%": return a % b;
             }
-            _error("unexpected number operaion:" + op);
+            _error("unexpected number operaion.ub:" + op);
             return null;
         }
         private static object __calc_num(System.SByte a, System.SByte b, string op)
@@ -308,7 +311,7 @@ namespace slagtool.runtime
                 case "/": return a / b;
                 case "%": return a % b;
             }
-            _error("unexpected number operaion:" + op);
+            _error("unexpected number operaion.b:" + op);
             return null;
         }
         private static object __calc_num(System.Int16 a, System.Int16 b, string op)
@@ -321,7 +324,7 @@ namespace slagtool.runtime
                 case "/": return a / b;
                 case "%": return a % b;
             }
-            _error("unexpected number operaion:" + op);
+            _error("unexpected number operaion.w:" + op);
             return null;
         }
         private static object __calc_num(System.UInt16 a, System.UInt16 b, string op)
@@ -334,7 +337,7 @@ namespace slagtool.runtime
                 case "/": return a / b;
                 case "%": return a % b;
             }
-            _error("unexpected number operaion:" + op);
+            _error("unexpected number operaion.uw:" + op);
             return null;
         }
         private static object __calc_num(System.Int32 a, System.Int32 b, string op)
@@ -346,8 +349,12 @@ namespace slagtool.runtime
                 case "*": return a * b;
                 case "/": return a / b;
                 case "%": return a % b;
+
+                case "&": return (int)a & (int)b;
+                case "|": return (int)a | (int)b;
+                case "^": return (int)a ^ (int)b;
             }
-            _error("unexpected number operaion:" + op);
+            _error("unexpected number operaion.i:" + op);
             return null;
         }
 
@@ -361,7 +368,7 @@ namespace slagtool.runtime
                 case "/": return a / b;
                 case "%": return a % b;
             }
-            _error("unexpected number operaion:" + op);
+            _error("unexpected number operaion.ui:" + op);
             return null;
         }
         private static object __calc_num(System.Int64 a, System.Int64 b, string op)
@@ -374,7 +381,7 @@ namespace slagtool.runtime
                 case "/": return a / b;
                 case "%": return a % b;
             }
-            _error("unexpected number operaion:" + op);
+            _error("unexpected number operaion.l:" + op);
             return null;
         }
 
@@ -388,7 +395,7 @@ namespace slagtool.runtime
                 case "/": return a / b;
                 case "%": return a % b;
             }
-            _error("unexpected number operaion:" + op);
+            _error("unexpected number operaion.ul:" + op);
             return null;
         }
         private static object __calc_num(System.Single a, System.Single b, string op)
@@ -401,7 +408,7 @@ namespace slagtool.runtime
                 case "/": return a / b;
                 case "%": return a % b;
             }
-            _error("unexpected number operaion:" + op);
+            _error("unexpected number operaion.f:" + op);
             return null;
         }
         private static object __calc_num(System.Double a, System.Double b, string op)
@@ -413,8 +420,12 @@ namespace slagtool.runtime
                 case "*": return a * b;
                 case "/": return a / b;
                 case "%": return a % b;
+
+                case "&": return (int)a & (int)b;
+                case "|": return (int)a | (int)b;
+                case "^": return (int)a ^ (int)b;
             }
-            _error("unexpected number operaion:" + op);
+            _error("unexpected number operaion.d:" + op);
             return null;
         }
 #endregion
