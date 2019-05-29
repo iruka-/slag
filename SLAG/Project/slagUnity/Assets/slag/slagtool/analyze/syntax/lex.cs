@@ -305,15 +305,10 @@ namespace slagtool
                 }
                 if (wdlen == 0) wdlen = ls.Length;
 
-                number d;
                 System.Int32 i32;
-				System.Globalization.CultureInfo provider;
-				provider = new System.Globalization.CultureInfo("en-US");
-
-				string h = s.Substring(2);
-                if (System.Int32.TryParse(h, System.Globalization.NumberStyles.HexNumber,provider,out i32))
+                if (System.Int32.TryParse(s.Substring(2), System.Globalization.NumberStyles.HexNumber,null,out i32))
                 {
-					d = i32;
+	                number d = i32;
                     return any_return(v, YDEF.NUM, d, s);
                 }else{
                     return err_return(v,s);
