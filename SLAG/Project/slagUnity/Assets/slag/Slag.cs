@@ -15,8 +15,24 @@ class SlagCUI
 		if( argc < 1 ) {
 			Console.Write("Usage:\n$ Slag.exe script.js\n");
 		}else{
-	    	sl.LoadFile(args[0]);
-    		sl.Run();
+			string option = args[0];
+			string file = args[0];
+			if(argc >= 2) {
+				file   = args[1];
+			}
+
+			if( option == "-c" ) {	//コンパイル
+	    		sl.LoadFile(file);
+	    		sl.SaveBin(file + ".bin");
+				return;
+			}
+
+			// スクリプト実行.
+			{
+	    		sl.LoadFile(file);
+	    		sl.Run();
+				return;
+			}
 		}
 	}
 }
