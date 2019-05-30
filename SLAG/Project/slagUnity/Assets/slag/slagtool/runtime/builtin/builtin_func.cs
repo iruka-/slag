@@ -62,19 +62,20 @@ namespace slagtool.runtime.builtin
                 var n = m.Name;
                 if (!n.StartsWith("F_")) continue;
                 n = n.Substring(2);
-                m_hash[n.ToUpper()] = new item() { category = d.categoryname, name =n, mi = m };
+//                m_hash[n.ToUpper()] = new item() { category = d.categoryname, name =n, mi = m };
+                m_hash[n] = new item() { category = d.categoryname, name =n, mi = m };
             }
         }
 
         public static bool IsFunc(string name)
         {
             if (m_hash==null) return false;
-            var i = (item)m_hash[name.ToUpper()];
+            var i = (item)m_hash[name]; //.ToUpper()];
             return (i!=null);
         }
         public static object Run(string name, object[] ol,StateBuffer sb)
         {
-            var i = (item)m_hash[name.ToUpper()];
+            var i = (item)m_hash[name];	//.ToUpper()];
             if (i ==null) return null;
 
             return i.Exec(ol,sb);

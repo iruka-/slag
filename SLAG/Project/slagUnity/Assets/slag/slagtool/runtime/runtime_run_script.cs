@@ -145,18 +145,18 @@ namespace slagtool.runtime
         }
         public void add_func(string name,YVALUE v)
         {
-            name = name.ToUpper();
+//            name = name.ToUpper();
             if (m_front_dic!=m_root_dic) util._error("root level can declear function");
             m_func_dic[name] = v;
         }
         public object get_func(string name)
         {
-            name = name.ToUpper();
+//            name = name.ToUpper();
             return m_func_dic[name];
         }
         public object get(string name)
         {
-            name = name.ToUpper();
+//            name = name.ToUpper();
 
             var bExist = false;//変数があるか?
 
@@ -230,7 +230,7 @@ namespace slagtool.runtime
         }
         public bool exist(string name)
         {
-            name = name.ToUpper();
+//            name = name.ToUpper();
             Func<Hashtable,bool> _find = null;
             _find = (d)=> {
                 if (d.ContainsKey(name)) {
@@ -253,7 +253,7 @@ namespace slagtool.runtime
         }
         public void find_and_set(string name, object o)//※setのみは define()
         {
-            name = name.ToUpper();
+//            name = name.ToUpper();
             Action<Hashtable> _findset = null;
             _findset = (d)=> {
                 if (d.ContainsKey(name)) {
@@ -314,7 +314,7 @@ namespace slagtool.runtime
         }
         public void define(string name, object o)
         {
-            name = name.ToUpper();
+//            name = name.ToUpper();
             if (m_front_dic.ContainsKey(name)) util._error("Multiple defined");
             m_front_dic[name] = o;
         }

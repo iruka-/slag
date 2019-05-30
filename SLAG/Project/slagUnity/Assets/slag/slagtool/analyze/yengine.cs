@@ -59,7 +59,7 @@ namespace slagtool
                         var v = l[n];
                         if (!v.IsType(YDEF.QSTR))
                         {
-                            if (v.s != null) v.s = v.s.ToUpper();
+//                            if (v.s != null) v.s = v.s.ToUpper();
                         }
 
                         if (v.IsType(YDEF.SP))

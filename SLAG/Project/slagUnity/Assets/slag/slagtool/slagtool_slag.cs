@@ -302,7 +302,7 @@ namespace slagtool
 #region 変数関連
         public bool ExistVal(string name)
         {
-            name = name.ToUpper();
+//            name = name.ToUpper();
             if (m_statebuf != null && m_statebuf.m_root_dic != null)
             {
                 return m_statebuf.m_root_dic.ContainsKey(name);
@@ -317,7 +317,7 @@ namespace slagtool
         }
         private object _getval(string name)
         {
-            name = name.ToUpper();
+//            name = name.ToUpper();
             if (m_statebuf != null && m_statebuf.m_root_dic != null)
             {
                 var dic = m_statebuf.m_root_dic;
@@ -354,7 +354,7 @@ namespace slagtool
         }
         private bool _setval(string name, object val, bool bCreateIfNotExist)
         {
-            name = name.ToUpper();
+//            name = name.ToUpper();
             if (ExistVal(name))
             {
                 m_statebuf.m_root_dic[name] = val;

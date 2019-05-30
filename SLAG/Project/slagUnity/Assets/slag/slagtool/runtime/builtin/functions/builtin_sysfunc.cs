@@ -56,7 +56,7 @@ namespace slagtool.runtime.builtin
 
             kit.check_num_of_args(ol,1);
 
-            var s = kit.get_string_at(ol,0).ToUpper();
+            var s = kit.get_string_at(ol,0);	//.ToUpper();
             var type = slagtool.runtime.sub_pointervar_clause.find_typeinfo(s);
 
             return type;
@@ -78,7 +78,7 @@ namespace slagtool.runtime.builtin
             }
             if (type == null)
             { 
-                var s = kit.get_string_at(ol,0).ToUpper();
+                var s = kit.get_string_at(ol,0);	//.ToUpper();
                 type  = kit.FindType(s);// slagtool.runtime.sub_pointervar_clause.find_typeinfo(s);
             }
 
@@ -103,7 +103,7 @@ namespace slagtool.runtime.builtin
             }
             else
             { 
-                var s = kit.get_string_at(ol,0).ToUpper();
+                var s = kit.get_string_at(ol,0);	//.ToUpper();
                 type = slagtool.runtime.sub_pointervar_clause.find_typeinfo(s);
             }
 
@@ -150,7 +150,7 @@ namespace slagtool.runtime.builtin
         public static Action<string> m_printFunc    =(s)=>System.Console.Write(s); 
         public static Action<string> m_printLnFunc  =(s)=>System.Console.WriteLine(s);
 
-        public static object F_Println(bool bHelp,object[] ol,StateBuffer sb)
+        public static object F_PrintLn(bool bHelp,object[] ol,StateBuffer sb)
         {
             if (bHelp)
             {

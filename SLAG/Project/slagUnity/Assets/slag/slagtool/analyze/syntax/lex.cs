@@ -234,27 +234,27 @@ namespace slagtool
                 }
                 if (wdlen == 0) wdlen = ls.Length;
 
-                switch(s.ToUpper())
+                switch(s)	// (s.ToLower())
                 {
-                case "FUNCTION": return any_return(v,YDEF.FUNCTION,null,s);
-                case "VAR"     : return any_return(v,YDEF.VAR,null,s);
-                case "IF"      : return any_return(v,YDEF.IF,null,s);
-                case "ELSE"    : return any_return(v,YDEF.ELSE,null,s);
-                case "FOR"     : return any_return(v,YDEF.FOR,null,s);
-                case "WHILE"   : return any_return(v,YDEF.WHILE,null,s);
-                case "SWITCH"  : return any_return(v,YDEF.SWITCH,null,s);
-                case "CASE"    : return any_return(v,YDEF.CASE,null,s);
-                case "DEFAULT" : return any_return(v,YDEF.DEFAULT,null,s);
-                case "BREAK"   : return any_return(v,YDEF.BREAK,null,s);
-                case "CONTINUE": return any_return(v,YDEF.CONTINUE,null,s);
-                case "RETURN"  : return any_return(v,YDEF.RETURN,null,s);
-                case "NEW"     : return any_return(v,YDEF.NEW,null,s);
-                case "IN"      : return any_return(v,YDEF.IN,null,s);
+                case "function": return any_return(v,YDEF.FUNCTION,null,s);
+                case "var"     : return any_return(v,YDEF.VAR,null,s);
+                case "if"      : return any_return(v,YDEF.IF,null,s);
+                case "else"    : return any_return(v,YDEF.ELSE,null,s);
+                case "for"     : return any_return(v,YDEF.FOR,null,s);
+                case "while"   : return any_return(v,YDEF.WHILE,null,s);
+                case "switch"  : return any_return(v,YDEF.SWITCH,null,s);
+                case "case"    : return any_return(v,YDEF.CASE,null,s);
+                case "default" : return any_return(v,YDEF.DEFAULT,null,s);
+                case "break"   : return any_return(v,YDEF.BREAK,null,s);
+                case "continue": return any_return(v,YDEF.CONTINUE,null,s);
+                case "return"  : return any_return(v,YDEF.RETURN,null,s);
+                case "new"     : return any_return(v,YDEF.NEW,null,s);
+                case "in"      : return any_return(v,YDEF.IN,null,s);
 
-                case "TRUE"    : return any_return(v,YDEF.BOOL,null,s);
-                case "FALSE"   : return any_return(v,YDEF.BOOL,null,s);
+                case "true"    : return any_return(v,YDEF.BOOL,null,s);
+                case "false"   : return any_return(v,YDEF.BOOL,null,s);
 
-                case "NULL"    : return any_return(v,YDEF.NULL,null,s);
+                case "null"    : return any_return(v,YDEF.NULL,null,s);
                 }
 
                 return any_return(v,YDEF.NAME,null,s);
@@ -378,7 +378,7 @@ namespace slagtool
             }
             if (type == YDEF.BOOL)
             {
-                v.o = (bool)(s.ToUpper()=="TRUE");
+                v.o = (bool)(s == "true" ); //(s.ToUpper()=="TRUE");
             }
             if (v.o==null) v.o = type;
             return v;

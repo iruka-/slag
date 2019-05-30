@@ -18,7 +18,7 @@ namespace slagtool.runtime
     {
         internal static object ExecuteFunc(object o, string api, object[] parameters )
         {
-            var name = api.ToUpper();
+            var name = api; // api.ToUpper();
 
             Type type = null;
             if (o is Type)
@@ -113,7 +113,8 @@ namespace slagtool.runtime
 
             foreach(var m in mlist)
             {
-                if (m.Name.ToUpper() != name) continue;
+//                if (m.Name.ToUpper() != name) continue;
+                if (m.Name != name) continue;
                 var pis = m.GetParameters();
                 if (_isMatchTypes(paramtypes,pis))
                 {

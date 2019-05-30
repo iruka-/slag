@@ -224,7 +224,7 @@ namespace slagtool
         //--- 本クラス内使用のツール
         public static int GetFilenameHash(string filename)
         {
-            return filename.ToUpper().GetHashCode();
+            return filename.GetHashCode();  //filename.ToUpper().GetHashCode();
         }
     }
 }

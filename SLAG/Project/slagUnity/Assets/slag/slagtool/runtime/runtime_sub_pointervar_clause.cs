@@ -148,7 +148,7 @@ namespace slagtool.runtime
             if (pretype == typeof(Hashtable))
             {
                 var ht = (Hashtable)preobj;
-                var nameo = name.ToUpper();
+                var nameo = name; //name.ToUpper();
                 item.o = ht[nameo];
                 item.getter = ()=>ht[nameo];
                 item.setter_parametertype = null;
@@ -210,7 +210,7 @@ namespace slagtool.runtime
             else if (pretype == typeof(Hashtable))
             {
                 var ht = (Hashtable)preobj;
-                var n  = name.ToUpper();
+                var n  = name; //name.ToUpper();
                 var funcobj = ht[n];
                 var nol = new LIST();
                 nol.Add(ht);
@@ -348,7 +348,7 @@ namespace slagtool.runtime
         private static PointervarItem GetObj(string pre, string cur, PointervarItem item)
         {
             //アセンブリ調査 --- set/get不明なので直前の形で返す
-            var searchname = (pre + "." + cur).ToUpper();
+            var searchname = (pre + "." + cur); // .ToUpper();
             var ti = find_typeinfo(searchname);
             if (ti!=null)
             {
@@ -363,7 +363,7 @@ namespace slagtool.runtime
         }
         private static PointervarItem GetObj(object o, string cur,PointervarItem item)
         {
-            var name = cur.ToUpper();
+            var name = cur; //.ToUpper();
             Type type = null;
             if (o is Type)
             {
@@ -382,7 +382,9 @@ namespace slagtool.runtime
 #if !test
             //var mem1 = type.GetDefaultMembers();
             //var mem2 = type.GetMembers();
-            var find_mi = Array.Find(type.GetMembers(),mi=>mi.Name.ToUpper()==name);
+
+            //var find_mi = Array.Find(type.GetMembers(),mi=>mi.Name.ToUpper()==name);
+            var find_mi = Array.Find(type.GetMembers(),mi=>mi.Name ==name);
             if (find_mi!=null)
             { 
                 if (find_mi.MemberType == MemberTypes.Property)
@@ -416,14 +418,16 @@ namespace slagtool.runtime
                 var mts = subtype.GetMethods(BindingFlags.Static| BindingFlags.Public);
 
                 var searchname_set = "__SET__" + name;
-                var find_set =Array.Find(mts, m=>m.Name.ToUpper()==searchname_set);
+                //var find_set =Array.Find(mts, m=>m.Name.ToUpper()==searchname_set);
+                var find_set =Array.Find(mts, m=>m.Name ==searchname_set);
                 if (find_set!=null)
                 {
                     item.setter = (x) => find_set.Invoke(null,new object[2] { obj, x });
                 }
 
                 var searchname_get = "__GET__" + name;
-                var find_get =Array.Find(mts, m=>m.Name.ToUpper()==searchname_get);
+                //var find_get =Array.Find(mts, m=>m.Name.ToUpper()==searchname_get);
+                var find_get =Array.Find(mts, m=>m.Name ==searchname_get);
                 if (find_get!=null)
                 {
                     item.getter = () => find_get.Invoke(null,new object[1] { obj });
@@ -441,7 +445,7 @@ namespace slagtool.runtime
         {
             if (item!=null && item.mode == PointervarMode.NEW)
             {
-                var searchname = (pre + "." + cur).ToUpper();
+                var searchname = (pre + "." + cur); //.ToUpper();
                 var ti = find_typeinfo(searchname);
                 if (ti!=null)
                 {
@@ -461,7 +465,7 @@ namespace slagtool.runtime
             var index = (int)util.ToNumber(index_o);
             if (item != null && item.mode == PointervarMode.NEW)
             {
-                var searchname = (pre + "." + cur).ToUpper();
+                var searchname = (pre + "." + cur); //.ToUpper();
                 var ti = find_typeinfo(searchname);
                 if (ti != null)
                 {
@@ -484,7 +488,7 @@ namespace slagtool.runtime
         private static PointervarItem ExecuteArrayVar(object o, string cur, object index_o, PointervarItem item)
         {
             if (index_o==null) throw new SystemException("index is null");
-            var name = cur.ToUpper();
+            var name = cur; //.ToUpper();
 
             int index = -1;
             if (util.IsNumeric(index_o.GetType())) index = (int)util.ToNumber(index_o);
@@ -541,7 +545,8 @@ namespace slagtool.runtime
             }
             //var mem1 = otype.GetDefaultMembers();
             //var mem2 = otype.GetMembers();
-            var find_mi = Array.Find(otype.GetMembers(),mi=>mi.Name.ToUpper()==name);
+            //var find_mi = Array.Find(otype.GetMembers(),mi=>mi.Name.ToUpper()==name);
+            var find_mi = Array.Find(otype.GetMembers(),mi=>mi.Name ==name);
             if (find_mi!=null)
             { 
                 if (find_mi.MemberType == MemberTypes.Property)
@@ -609,7 +614,7 @@ namespace slagtool.runtime
 
                     foreach(var ti in asm.GetTypes())
                     {
-                        var n = ti.FullName.ToUpper();
+                        var n = ti.FullName; //.ToUpper();
                         if (!m_dic.ContainsKey(n))
                         { 
                             m_dic.Add(n,ti);
@@ -620,10 +625,11 @@ namespace slagtool.runtime
 
             internal Type Find(string name)
             {
-                name = name.ToUpper();
+//                name = name.ToUpper();
 
                 //                   01234567890
-                if (name.StartsWith("$NAMELESS."))
+//                if (name.StartsWith("$NAMELESS."))
+                if (name.StartsWith("$nameless."))
                 {
                     name = name.Substring(10);
                 }
